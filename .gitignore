@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Common/bin/Debug
+/Common/obj/Debug
+/.vs/CloudLibrary/v14/.suo
