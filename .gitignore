@@ -2,6 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Common/bin/Debug
-/Common/obj/Debug
+/DotNet/.vs/CloudLibrary/v14/.suo
+/DotNet/Common/Souce/bin/Debug
+/DotNet/Common/Souce/obj/Debug
+/DotNet/Common/StyleCop.Cache
 /.vs/CloudLibrary/v14/.suo
