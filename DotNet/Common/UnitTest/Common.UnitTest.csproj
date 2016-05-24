@@ -57,6 +57,7 @@
     <Compile Include="ExceptionBaseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonInstanceUnitTest.cs" />
+    <Compile Include="StringExtensionsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Source\Common.Source.csproj">

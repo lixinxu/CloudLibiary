@@ -36,7 +36,7 @@ namespace CloudLibrary.Common.Diagnostics
         /// </summary>
         /// <remarks>
         /// For example, a configuration was not found. However, the application still can continue by using default 
-        /// or pre-defined value.
+        /// or predefined value.
         /// </remarks>
         Warning,
 

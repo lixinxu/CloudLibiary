@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="CommonUtilities.cs" />
+    <Compile Include="Diagnostics\EventCollectionAttribute.cs" />
     <Compile Include="Diagnostics\EventLevel.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Empty.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="IObjectResolverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonInstance.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
