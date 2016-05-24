@@ -6,6 +6,8 @@
 
 namespace CloudLibrary.Common
 {
+    using System;
+    using System.Runtime.InteropServices;
     using System.Security;
 
     /// <summary>
@@ -85,11 +87,26 @@ namespace CloudLibrary.Common
             return secureString;
         }
 
+        /// <summary>
+        /// Get plain text from secure string
+        /// </summary>
+        /// <param name="secureString">secure string instance</param>
+        /// <returns>plain text</returns>
         public static string ToPlainText(this SecureString secureString)
         {
             string value = null;
             if (secureString != null)
             {
+                IntPtr unmanagedString = IntPtr.Zero;
+                try
+                {
+                    unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(secureString);
+                    value = Marshal.PtrToStringUni(unmanagedString);
+                }
+                finally
+                {
+                    Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+                }
             }
             return value;
         }

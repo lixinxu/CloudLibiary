@@ -7,6 +7,7 @@
 namespace CloudLibrary.Common.UnitTest
 {
     using System;
+    using System.Security;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -70,7 +71,42 @@ namespace CloudLibrary.Common.UnitTest
         }
         #endregion SafeTrim()
 
-        #region ToSecureString()
-        #endregion ToSecureString()
+        #region SecureString
+        /// <summary>
+        /// null string to secure string test
+        /// </summary>
+        [TestMethod]
+        public void StringExtensions_ToSecureString_Null()
+        {
+            string value = null;
+            Assert.IsNull(value.ToSecureString());
+        }
+
+        /// <summary>
+        /// null secure string to string test
+        /// </summary>
+        [TestMethod]
+        public void StringExtensions_ToPlainText_Null()
+        {
+            SecureString value = null;
+            Assert.IsNull(value.ToPlainText());
+        }
+
+        /// <summary>
+        /// null secure string to string test
+        /// </summary>
+        [TestMethod]
+        public void StringExtensions_ToSecureString_ToPlainText_Test()
+        {
+            var value = "data" + Guid.NewGuid().ToString();
+            SecureString secure = value.ToSecureString();
+            Assert.IsNotNull(secure);
+
+            var actual = secure.ToPlainText();
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(value, actual);
+        }
+
+        #endregion SecureString
     }
 }
