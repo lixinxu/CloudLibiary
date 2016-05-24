@@ -7,3 +7,7 @@
 /DotNet/Common/Souce/obj/Debug
 /DotNet/Common/StyleCop.Cache
 /.vs/CloudLibrary/v14/.suo
+/DotNet/Common/UnitTest/bin/Debug
+/DotNet/Common/UnitTest/obj/Debug
+/DotNet/Common/UnitTest/StyleCop.Cache
+/DotNet/TestResults

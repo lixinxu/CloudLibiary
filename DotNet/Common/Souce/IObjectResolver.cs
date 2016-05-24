@@ -32,7 +32,7 @@ namespace CloudLibrary.Common
         /// </remarks>
         /// <example>
         /// <![CDATA[
-        /// var factory = Singleton<ObjectResolverFactory>.Instance;
+        /// var factory = SingletonInstance<ObjectResolverFactory>.Instance;
         /// var resolver = factory.GetResolver(typeof(ILogger));
         /// if (resolver != null)
         /// {
@@ -42,7 +42,7 @@ namespace CloudLibrary.Common
         /// ]]>
         /// Using IObjectResolver and IObjectResolverFactory extensions my simplify the code:
         /// <![CDATA[
-        /// var factory = Singleton<ObjectResolverFactory>.Instance;
+        /// var factory = SingletonInstance<ObjectResolverFactory>.Instance;
         /// var resolver = factory.GetResolver<ILogger, TraceLogger>();
         /// var logger = resolver.Resolve();
         /// logger.Write(...);
