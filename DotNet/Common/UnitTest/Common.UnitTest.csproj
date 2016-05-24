@@ -57,7 +57,7 @@
     <Compile Include="SingletonInstanceUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Souce\Common.Source.csproj">
+    <ProjectReference Include="..\Source\Common.Source.csproj">
       <Project>{dba660ba-77cd-48f9-81b8-6519378349de}</Project>
       <Name>Common.Source</Name>
     </ProjectReference>

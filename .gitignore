@@ -3,11 +3,11 @@
 ################################################################################
 
 /DotNet/.vs/CloudLibrary/v14/.suo
-/DotNet/Common/Souce/bin/Debug
-/DotNet/Common/Souce/obj/Debug
+/DotNet/Common/Source/bin
+/DotNet/Common/Source/obj
 /DotNet/Common/StyleCop.Cache
 /.vs/CloudLibrary/v14/.suo
-/DotNet/Common/UnitTest/bin/Debug
-/DotNet/Common/UnitTest/obj/Debug
+/DotNet/Common/UnitTest/bin
+/DotNet/Common/UnitTest/obj
 /DotNet/Common/UnitTest/StyleCop.Cache
 /DotNet/TestResults
