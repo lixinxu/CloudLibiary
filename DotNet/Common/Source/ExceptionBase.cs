@@ -7,11 +7,10 @@
 namespace CloudLibrary.Common
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.Security;
-    
+
     /// <summary>
     /// Exception base
     /// </summary>
@@ -75,15 +74,16 @@ namespace CloudLibrary.Common
             this.EventId = info.GetInt32(EventIdDataKey);
             var names = info.GetValue(RuntineInformationNamesKey, typeof(string[])) as string[];
             Dictionary<string, object> runtimeInformation = null;
-            if ((names != null) && (names.Length > 0))
+            if (!names.IsNullOrEmpty())
             {
                 runtimeInformation = new Dictionary<string, object>(names.Length);
                 var values = info.GetValue(RuntineInformationValuesKey, typeof(object[])) as object[];
-                for (var i= 0;i<names.Length;i++)
+                for (var i = 0; i < names.Length; i++)
                 {
                     runtimeInformation.Add(names[i], values[i]);
                 }
             }
+
             this.RuntimeInformation = runtimeInformation;
         }
 
@@ -102,34 +102,35 @@ namespace CloudLibrary.Common
         /// </summary>
         public IReadOnlyDictionary<string, object> RuntimeInformation { get; }
 
+        /// <summary>
+        /// Get object data for serialization
+        /// </summary>
+        /// <param name="info">serialization information</param>
+        /// <param name="context">streaming context</param>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(EventSourceDataKey, this.EventSource);
             info.AddValue(EventIdDataKey, this.EventId);
             int count = 0;
-            if (this.RuntimeInformation != null) 
+            if (this.RuntimeInformation.IsReadOnlyNullOrEmpty())
+            {
+                info.AddValue(RuntineInformationNamesKey, Empty.GetArray<string>());
+            }
+            else
             {
                 count = this.RuntimeInformation.Count;
-                if (count > 0)
+                var names = new string[count];
+                var values = new object[count];
+                var index = 0;
+                foreach (var pair in this.RuntimeInformation)
                 {
-                    var names = new string[count];
-                    var values = new object[count];
-                    var index = 0;
-                    foreach (var pair in this.RuntimeInformation)
-                    {
-                        names[index] = pair.Key;
-                        values[index] = pair.Value;
-                        index++;
-                    }
-
-                    info.AddValue(RuntineInformationNamesKey, names);
-                    info.AddValue(RuntineInformationValuesKey, values);
+                    names[index] = pair.Key;
+                    values[index] = pair.Value;
+                    index++;
                 }
-            }
 
-            if (count < 1)
-            {
-                info.AddValue(RuntineInformationNamesKey, new string[0]);
+                info.AddValue(RuntineInformationNamesKey, names);
+                info.AddValue(RuntineInformationValuesKey, values);
             }
 
             base.GetObjectData(info, context);

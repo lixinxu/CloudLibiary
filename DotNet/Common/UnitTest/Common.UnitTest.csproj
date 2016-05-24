@@ -52,6 +52,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CollectionExtensionsUnitTest.cs" />
+    <Compile Include="EmptyUnitTest.cs" />
     <Compile Include="ExceptionBaseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonInstanceUnitTest.cs" />
