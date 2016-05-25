@@ -20,20 +20,14 @@ namespace CloudLibrary.Common.Diagnostics
         /// <param name="name">event name</param>
         /// <param name="id">event id</param>
         /// <param name="level">event level</param>
-        /// <param name="resourceName">resource name for template</param>
-        /// <param name="defaultMessageTemplate">default template content</param>
         public EventItemInformation(
             string name, 
             int id,
-            EventLevel level, 
-            string resourceName, 
-            string defaultMessageTemplate)
+            EventLevel level)
         {
             this.Name = name;
             this.Id = id;
             this.Level = level;
-            this.ResourceName = resourceName;
-            this.DefaultMessageTemplate = defaultMessageTemplate;
         }
 
         /// <summary>
@@ -50,15 +44,5 @@ namespace CloudLibrary.Common.Diagnostics
         /// Gets event level
         /// </summary>
         public EventLevel Level { get; }
-
-        /// <summary>
-        /// Gets resource name for retrieving message template
-        /// </summary>
-        public string ResourceName { get; }
-
-        /// <summary>
-        /// Gets default message template
-        /// </summary>
-        public string DefaultMessageTemplate { get; }
     }
 }

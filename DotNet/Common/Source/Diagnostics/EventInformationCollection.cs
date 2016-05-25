@@ -56,44 +56,30 @@ namespace CloudLibrary.Common.Diagnostics
                     var value = (T)rawValue;
 
                     var itemAttribute = fieldInformation.GetCustomAttribute<EventItemAttribute>();
+                    var id = fieldInformation.GetValue(null);
+                    EventLevel level;
                     if (itemAttribute == null)
                     {
+                        level = EventItemAttribute.DefaultEventLevel;
                         // TODO: Log error
                     }
                     else
                     {
-                        var id = fieldInformation.GetValue(null);
-                        string resourceName;
-                        string defaultTemplate;
-                        KeyValuePair<string, string> resourceItem;
-                        if (!resourceInformationCollection.TryGetResourceInformation(value, out resourceItem))
-                        {
-                            // TODO: log error
-                            resourceName = null;
-                            defaultTemplate = null;
-                        }
-                        else
-                        {
-                            resourceName = resourceItem.Key;
-                            defaultTemplate = resourceItem.Value;
-                        }
+                        level = itemAttribute.Level;
+                    }
+                    var eventItem = new EventItemInformation(
+                        fieldInformation.Name,
+                        (int)rawValue,
+                        level);
 
-                        var eventItem = new EventItemInformation(
-                            fieldInformation.Name,
-                            (int)rawValue,
-                            itemAttribute.Level,
-                            resourceName,
-                            defaultTemplate);
-
-                        EventItemInformation previousEventItem;
-                        if (eventInformationCollection.TryGetValue(value, out previousEventItem))
-                        {
-                            // TODO: log error
-                        }
-                        else
-                        {
-                            eventInformationCollection.Add(value, eventItem);
-                        }
+                    EventItemInformation previousEventItem;
+                    if (eventInformationCollection.TryGetValue(value, out previousEventItem))
+                    {
+                        // TODO: log error
+                    }
+                    else
+                    {
+                        eventInformationCollection.Add(value, eventItem);
                     }
                 }
 
