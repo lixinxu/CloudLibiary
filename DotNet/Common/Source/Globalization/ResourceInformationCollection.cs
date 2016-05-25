@@ -40,6 +40,7 @@ namespace CloudLibrary.Common.Globalization
             if (!type.IsEnum)
             {
                 // TODO: log error
+                return;
             }
 
             string storageName = null;
@@ -123,6 +124,7 @@ namespace CloudLibrary.Common.Globalization
                 return item.Content;
             }
 
+            // TODO: log error
             return null;
         }
 
@@ -141,6 +143,7 @@ namespace CloudLibrary.Common.Globalization
                 return true;
             }
 
+            // TODO: log error
             information = default(KeyValuePair<string, string>);
             return false;
         }
