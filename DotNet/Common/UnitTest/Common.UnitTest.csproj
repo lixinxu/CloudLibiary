@@ -53,6 +53,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CollectionExtensionsUnitTest.cs" />
+    <Compile Include="DiagnosticsTest\EventCollectionAttributeUnitTest.cs" />
+    <Compile Include="DiagnosticsTest\EventItemAttributeUnitTest.cs" />
     <Compile Include="EmptyUnitTest.cs" />
     <Compile Include="ExceptionBaseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +62,10 @@
     <Compile Include="StringExtensionsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\UnitTestHelper\UnitTestHelper.csproj">
+      <Project>{8ed49a00-2ef5-430e-b37f-060ae1a06db3}</Project>
+      <Name>UnitTestHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Source\Common.Source.csproj">
       <Project>{dba660ba-77cd-48f9-81b8-6519378349de}</Project>
       <Name>Common.Source</Name>

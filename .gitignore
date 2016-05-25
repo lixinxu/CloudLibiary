@@ -11,5 +11,8 @@
 /DotNet/Common/UnitTest/obj
 /DotNet/Common/UnitTest/StyleCop.Cache
 /DotNet/TestResults
-/DotNet/Tools/WindowsEventSourceCreator/bin/Debug
-/DotNet/Tools/WindowsEventSourceCreator/obj/Debug
+/DotNet/Tools/WindowsEventSourceCreator/bin
+/DotNet/Tools/WindowsEventSourceCreator/obj
+/DotNet/Shared/UnitTestHelper/bin
+/DotNet/Shared/UnitTestHelper/obj
+/DotNet/Shared/UnitTestHelper/StyleCop.Cache
