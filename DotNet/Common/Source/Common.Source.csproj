@@ -43,7 +43,9 @@
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="CommonUtilities.cs" />
     <Compile Include="Diagnostics\EventCollectionAttribute.cs" />
+    <Compile Include="Diagnostics\EventInformationCollection.cs" />
     <Compile Include="Diagnostics\EventItemAttribute.cs" />
+    <Compile Include="Diagnostics\EventItemInformation.cs" />
     <Compile Include="Diagnostics\EventLevel.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\ILogExtensions.cs" />

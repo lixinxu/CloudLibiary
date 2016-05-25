@@ -38,15 +38,15 @@ namespace CloudLibrary.Common.Diagnostics
         /// <summary>
         /// Initializes a new instance of the <see cref="EventCollectionAttribute" /> class.
         /// </summary>
-        /// <param name="eventSource">event source name</param>
-        public EventCollectionAttribute(string eventSource)
+        /// <param name="sourceName">event source name</param>
+        public EventCollectionAttribute(string sourceName)
         {
-            this.EventSource = eventSource.SafeTrim();
+            this.SourceName = sourceName.SafeTrim();
         }
 
         /// <summary>
         /// Gets event source
         /// </summary>
-        public string EventSource { get; }
+        public string SourceName { get; }
     }
 }
