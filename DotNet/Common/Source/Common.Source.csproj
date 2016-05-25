@@ -49,6 +49,11 @@
     <Compile Include="Diagnostics\ILogExtensions.cs" />
     <Compile Include="Empty.cs" />
     <Compile Include="ExceptionBase.cs" />
+    <Compile Include="Globalization\IResourceProvider.cs" />
+    <Compile Include="Globalization\IResourceProviderExtensions.cs" />
+    <Compile Include="Globalization\ResourceCollectionAttribute.cs" />
+    <Compile Include="Globalization\ResourceInformationCollection.cs" />
+    <Compile Include="Globalization\ResourceItemAttribute.cs" />
     <Compile Include="IObjectResolver.cs" />
     <Compile Include="IObjectResolverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
