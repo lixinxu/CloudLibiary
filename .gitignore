@@ -17,3 +17,6 @@
 /DotNet/Shared/UnitTestHelper/obj
 /DotNet/Shared/UnitTestHelper/StyleCop.Cache
 /DotNet/Common/Source/StyleCop.Cache
+/DotNet/Shared/CommonUnitTestHelper/bin
+/DotNet/Shared/CommonUnitTestHelper/obj
+/DotNet/Shared/CommonUnitTestHelper/StyleCop.Cache

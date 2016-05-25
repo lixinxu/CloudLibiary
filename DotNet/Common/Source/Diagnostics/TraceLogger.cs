@@ -41,7 +41,7 @@ namespace CloudLibrary.Common.Diagnostics
             IReadOnlyDictionary<string, object> runtimeInformation)
         {
             var builder = new StringBuilder(TracePrefix);
-            builder.AppendLine($"[Source:{eventSource}][id:{eventId}][Level:{eventLevel}][Time:{eventTime.ToString()}");
+            builder.AppendLine($"[Source:{eventSource}][id:{eventId}][Level:{eventLevel}][Time:{eventTime.ToString()}]");
             if (!string.IsNullOrEmpty(message))
             {
                 builder.AppendLine("Message:");
@@ -80,7 +80,7 @@ namespace CloudLibrary.Common.Diagnostics
                 }
             }
 
-            throw new NotImplementedException();
+            Trace.WriteLine(builder.ToString());
         }
     }
 }

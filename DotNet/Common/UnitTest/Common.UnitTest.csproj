@@ -57,6 +57,7 @@
     <Compile Include="DiagnosticsTest\EventInformationCollectionUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventItemAttributeUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventItemInformationUnitTest.cs" />
+    <Compile Include="DiagnosticsTest\TraceLoggerUnitTest.cs" />
     <Compile Include="EmptyUnitTest.cs" />
     <Compile Include="ExceptionBaseUnitTest.cs" />
     <Compile Include="GlobalizationTest\ResourceCollectionAttributeUnitTest.cs" />
@@ -67,6 +68,10 @@
     <Compile Include="StringExtensionsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\CommonUnitTestHelper\CommonUnitTestHelper.csproj">
+      <Project>{61fa4aca-13ae-49a2-afec-7577ffc29b2c}</Project>
+      <Name>CommonUnitTestHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\UnitTestHelper\UnitTestHelper.csproj">
       <Project>{8ed49a00-2ef5-430e-b37f-060ae1a06db3}</Project>
       <Name>UnitTestHelper</Name>
@@ -75,6 +80,9 @@
       <Project>{dba660ba-77cd-48f9-81b8-6519378349de}</Project>
       <Name>Common.Source</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
