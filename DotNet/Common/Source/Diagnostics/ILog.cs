@@ -51,7 +51,7 @@ namespace CloudLibrary.Common.Diagnostics
         /// </example>
         void Write(
             string eventSource,
-            ulong eventId,
+            int eventId,
             EventLevel eventLevel,
             string message,
             DateTime eventTime,

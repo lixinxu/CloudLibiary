@@ -54,7 +54,9 @@
   <ItemGroup>
     <Compile Include="CollectionExtensionsUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventCollectionAttributeUnitTest.cs" />
+    <Compile Include="DiagnosticsTest\EventInformationCollectionUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventItemAttributeUnitTest.cs" />
+    <Compile Include="DiagnosticsTest\EventItemInformationUnitTest.cs" />
     <Compile Include="EmptyUnitTest.cs" />
     <Compile Include="ExceptionBaseUnitTest.cs" />
     <Compile Include="GlobalizationTest\ResourceCollectionAttributeUnitTest.cs" />

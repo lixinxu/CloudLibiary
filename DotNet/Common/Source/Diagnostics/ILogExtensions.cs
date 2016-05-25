@@ -12,6 +12,7 @@ namespace CloudLibrary.Common.Diagnostics
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Globalization;
 
     public static class ILogExtensions
     {
@@ -19,7 +20,9 @@ namespace CloudLibrary.Common.Diagnostics
             this ILog logger,
             DateTime eventTime,
             StackTrace stackTrace,
-            IReadOnlyDictionary<string, object> runtimeInformation) where T: struct
+            IReadOnlyDictionary<string, object> runtimeInformation,
+            IResourceProvider resourceProvider,
+            params object[] parameters) where T: struct
         {
         }
     }
