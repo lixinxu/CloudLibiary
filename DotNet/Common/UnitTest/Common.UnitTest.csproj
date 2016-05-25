@@ -60,6 +60,7 @@
     <Compile Include="DiagnosticsTest\TraceLoggerUnitTest.cs" />
     <Compile Include="EmptyUnitTest.cs" />
     <Compile Include="ExceptionBaseUnitTest.cs" />
+    <Compile Include="GlobalizationTest\IResourceProviderExtensionsUnitTest.cs" />
     <Compile Include="GlobalizationTest\ResourceCollectionAttributeUnitTest.cs" />
     <Compile Include="GlobalizationTest\ResourceInformationCollectionUnitTest.cs" />
     <Compile Include="GlobalizationTest\ResourceItemAttributeUnitTest.cs" />

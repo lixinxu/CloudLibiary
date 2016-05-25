@@ -29,7 +29,7 @@ namespace CloudLibrary.Common.Globalization
     /// ...
     /// ]]>
     /// </example>
-    [AttributeUsage(AttributeTargets.Enum)]
+    [AttributeUsage(AttributeTargets.Field)]
     public class ResourceItemAttribute : Attribute
     {
         /// <summary>
