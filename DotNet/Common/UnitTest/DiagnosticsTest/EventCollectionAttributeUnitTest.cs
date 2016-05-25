@@ -25,7 +25,7 @@ namespace CloudLibrary.Common.UnitTest.DiagnosticsTest
         public void EventCollectionAttribute_NullSourceName()
         {
             var attribute = new EventCollectionAttribute(null);
-            Assert.IsNull(attribute.EventSource);
+            Assert.IsNull(attribute.SourceName);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace CloudLibrary.Common.UnitTest.DiagnosticsTest
         public void EventCollectionAttribute_EmptySourceName()
         {
             var attribute = new EventCollectionAttribute(string.Empty);
-            Assert.IsNull(attribute.EventSource);
+            Assert.IsNull(attribute.SourceName);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CloudLibrary.Common.UnitTest.DiagnosticsTest
         public void EventCollectionAttribute_BlankSourceName()
         {
             var attribute = new EventCollectionAttribute("  \r\n \t  ");
-            Assert.IsNull(attribute.EventSource);
+            Assert.IsNull(attribute.SourceName);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace CloudLibrary.Common.UnitTest.DiagnosticsTest
         {
             var name = "name" + Guid.NewGuid().ToString("N");
             var attribute = new EventCollectionAttribute($"  \r\n \t{name}  ");
-            Assert.AreEqual(name, attribute.EventSource);
+            Assert.AreEqual(name, attribute.SourceName);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace CloudLibrary.Common.UnitTest.DiagnosticsTest
         {
             var name = "name" + Guid.NewGuid().ToString("N");
             var attribute = new EventCollectionAttribute(name);
-            Assert.AreEqual(name, attribute.EventSource);
+            Assert.AreEqual(name, attribute.SourceName);
         }
     }
 }
