@@ -58,6 +58,7 @@
     <Compile Include="DiagnosticsTest\EventItemAttributeUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventItemInformationUnitTest.cs" />
     <Compile Include="DiagnosticsTest\TraceLoggerUnitTest.cs" />
+    <Compile Include="DiagnosticsTest\WindowsEventLoggerUnitTest.cs" />
     <Compile Include="EmptyUnitTest.cs" />
     <Compile Include="ExceptionBaseUnitTest.cs" />
     <Compile Include="GlobalizationTest\ResourceCollectionAttributeUnitTest.cs" />
