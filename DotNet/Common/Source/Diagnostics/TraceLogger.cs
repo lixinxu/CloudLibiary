@@ -48,8 +48,37 @@ namespace CloudLibrary.Common.Diagnostics
                 builder.AppendLine($"\t{message}");
             }
 
-            DiagnosticUtilities.AppendStackTraceInformation(builder, stackTrace);
-            DiagnosticUtilities.AddRuntimeInformation(builder, runtimeInformation);
+            if (stackTrace != null)
+            {
+                var frames = stackTrace.GetFrames();
+                if (!frames.IsNullOrEmpty())
+                {
+                    builder.AppendLine("Stack trace:");
+                    foreach (var frame in frames)
+                    {
+                        builder.AppendLine($"\t{DiagnosticUtilities.GetMethodInformation(frame)}");
+                    }
+                }
+            }
+
+            if (!runtimeInformation.IsReadOnlyNullOrEmpty())
+            {
+                builder.AppendLine("Runtime Information:");
+                foreach (var pair in runtimeInformation)
+                {
+                    string value;
+                    try
+                    {
+                        value = pair.Value.ToString();
+                    }
+                    catch (Exception exception)
+                    {
+                        value = exception.ToString();
+                    }
+
+                    builder.AppendLine($"\t{pair.Key}: {value}");
+                }
+            }
 
             Trace.WriteLine(builder.ToString());
         }
