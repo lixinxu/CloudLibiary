@@ -7,6 +7,7 @@
 namespace CloudLibrary.Common.Diagnostics
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Text;
@@ -16,6 +17,19 @@ namespace CloudLibrary.Common.Diagnostics
     /// </summary>
     public static class DiagnosticUtilities
     {
+        private const string DefaultStackTraceTitle = "Stack Trace";
+        private const string DefaultFileLabel = "File";
+        private const string DefaultLineLabel = "Line";
+        private const string DefaultColumnLabel = "Column";
+        private const string DefaultRuntimeInformationTitle = "Runtime Information";
+        private const string DefaultEventSourceTitle = "Event Source";
+        private const string DefaultEventIdTitle = "Event Id";
+        private const string DefaultExceptionDataTitle = "Exception Data";
+        private const string DefaultInnerExceptionTitle = "Inner Exception";
+
+        private const string KeyStringPairTemplate = "{0}:\"{1}\"";
+        private const string KeyValuePairTemplate = "{0}:{1}";
+
         /// <summary>
         /// Add stack trace information into message builder
         /// </summary>
@@ -28,10 +42,10 @@ namespace CloudLibrary.Common.Diagnostics
         public static void AppendStackTraceInformation(
             StringBuilder builder, 
             StackTrace stackTrace, 
-            string title = "Stack trace",
-            string fileLabel = "File",
-            string lineLable = "Line",
-            string columnLabel = "Column")
+            string title = DefaultStackTraceTitle,
+            string fileLabel = DefaultFileLabel,
+            string lineLable = DefaultLineLabel,
+            string columnLabel = DefaultColumnLabel)
         {
             if (stackTrace != null)
             {
@@ -88,18 +102,18 @@ namespace CloudLibrary.Common.Diagnostics
                 var filename = frame.GetFileName();
                 if (!string.IsNullOrEmpty(filename))
                 {
-                    builder.AppendFormat(" {0}:\"{1}\"", fileLabel, filename);
+                    builder.AppendFormat(" " + KeyStringPairTemplate, fileLabel, filename);
 
                     var lineNumber = frame.GetFileLineNumber();
                     if (lineNumber > 0)
                     {
-                        builder.AppendFormat(" {0}:{1}", lineLable, lineNumber);
+                        builder.AppendFormat(" " + KeyValuePairTemplate, lineLable, lineNumber);
                     }
 
                     var columnNumber = frame.GetFileColumnNumber();
                     if (columnNumber > 0)
                     {
-                        builder.AppendFormat(" {0}:{1}", columnLabel, columnNumber);
+                        builder.AppendFormat(" " + KeyValuePairTemplate, columnLabel, columnNumber);
                     }
                 }
             }
@@ -118,7 +132,7 @@ namespace CloudLibrary.Common.Diagnostics
         public static void AddRuntimeInformation(
             StringBuilder builder, 
             IReadOnlyDictionary<string, object> runtimeInformation,
-            string title = "Runtime Information")
+            string title = DefaultRuntimeInformationTitle)
         {
             if (!runtimeInformation.IsReadOnlyNullOrEmpty())
             {
@@ -138,6 +152,107 @@ namespace CloudLibrary.Common.Diagnostics
 
                     builder.AppendLine($"\t{pair.Key}: {value}");
                 }
+            }
+        }
+
+        public static void FormatMessage(StringBuilder builder, string template, params object[] parameters)
+        {
+            if (parameters.IsNullOrEmpty())
+            {
+                builder.Append(template);
+                return;
+            }
+
+            var items = new string[parameters.Length];
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                var parameter = parameters[i];
+                if ((parameter == null) || (parameter is string))
+                {
+                    items[i] = parameter as string;
+                }
+                else if (parameter is Exception)
+                {
+                    var exceptionBuilder = new StringBuilder();
+                    BuildExceptionMessage(exceptionBuilder, parameter as Exception);
+                    items[i] = exceptionBuilder.ToString();
+                }
+                else
+                {
+                    string value;
+                    try
+                    {
+                        value = parameter.ToString();
+                    }
+                    catch(Exception exception)
+                    {
+                        // TODO: log error
+                        value = exception.ToString();
+                    }
+                    items[i] = value;
+                }
+            }
+
+            string message;
+            try
+            {
+                message = string.Format(template, items);
+                builder.Append(message);
+            }
+            catch (Exception exception)
+            {
+                builder.AppendFormat("Template:{0}", template);
+                builder.AppendLine();
+                builder.AppendLine("Parameters:");
+                for (var i = 0; i < items.Length; i++)
+                {
+                    builder.AppendFormat(KeyStringPairTemplate, i, items[i]);
+                    builder.AppendLine();
+                }
+                builder.AppendLine("Format exception:");
+                BuildExceptionMessage(builder, exception);
+            }
+        }
+
+        public static void BuildExceptionMessage(
+            StringBuilder builder, 
+            Exception exception,
+            string eventSourceTitle = DefaultEventSourceTitle,
+            string eventIdTitle = DefaultEventIdTitle)
+        {
+            var isInnerException = false;
+
+            while (exception != null)
+            {
+                if (isInnerException)
+                {
+                    builder.AppendLine(" ------------------- " + DefaultInnerExceptionTitle + " ------------------- ");
+                }
+
+                var predefinedException = exception as ExceptionBase;
+                if (predefinedException != null)
+                {
+                    builder.AppendFormat(KeyStringPairTemplate, eventSourceTitle, predefinedException.EventSource);
+                    builder.AppendLine();
+                    builder.AppendFormat(KeyValuePairTemplate, eventIdTitle, predefinedException.EventId);
+                    builder.AppendLine();
+                    AddRuntimeInformation(builder, predefinedException.RuntimeInformation);
+                }
+
+                if (!exception.Data.IsNullOrEmpty())
+                {
+                    builder.AppendFormat("{0}:", DefaultExceptionDataTitle);
+                    foreach (DictionaryEntry pair in exception.Data)
+                    {
+                        builder.AppendFormat("\t" + KeyStringPairTemplate, pair.Key, pair.Value);
+                    }
+                }
+
+                var stackTrace = new StackTrace(exception, true);
+                AppendStackTraceInformation(builder, stackTrace);
+
+                exception = exception.InnerException;
+                isInnerException = true;
             }
         }
     }

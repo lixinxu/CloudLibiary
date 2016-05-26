@@ -58,6 +58,7 @@
     <Compile Include="Globalization\ResourceCollectionAttribute.cs" />
     <Compile Include="Globalization\ResourceInformationCollection.cs" />
     <Compile Include="Globalization\ResourceItemAttribute.cs" />
+    <Compile Include="IConfigurationProvider.cs" />
     <Compile Include="IObjectResolver.cs" />
     <Compile Include="IObjectResolverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

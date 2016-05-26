@@ -6,6 +6,7 @@
 
 namespace CloudLibrary.Common.UnitTest
 {
+    using System.Collections;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,6 +26,7 @@ namespace CloudLibrary.Common.UnitTest
             int[] data = null;
             Assert.IsTrue(data.IsNullOrEmpty());
             Assert.IsTrue(data.IsReadOnlyNullOrEmpty());
+            Assert.IsTrue(((ICollection)data).IsNullOrEmpty());
         }
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace CloudLibrary.Common.UnitTest
             var data = new int[0];
             Assert.IsTrue(data.IsNullOrEmpty());
             Assert.IsTrue(data.IsReadOnlyNullOrEmpty());
+            Assert.IsTrue(((ICollection)data).IsNullOrEmpty());
         }
 
         /// <summary>
@@ -50,6 +53,7 @@ namespace CloudLibrary.Common.UnitTest
                 var data = new int[count];
                 Assert.IsFalse(data.IsNullOrEmpty());
                 Assert.IsFalse(data.IsReadOnlyNullOrEmpty());
+                Assert.IsFalse(((ICollection)data).IsNullOrEmpty());
             }
         }
     }
