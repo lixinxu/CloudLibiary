@@ -155,6 +155,21 @@ namespace CloudLibrary.Common.Diagnostics
             }
         }
 
+        /// <summary>
+        /// Format event log message
+        /// </summary>
+        /// <param name="builder">event message builder</param>
+        /// <param name="template">message template</param>
+        /// <param name="parameters">parameters for template to build the message</param>
+        /// <remarks>
+        /// <para>Basically it is kind of builder.AppendFormat(template, parameters). However, it does more:</para>
+        /// <para>1. if calling parameter.ToString() failed, it will add exception information and log error</para>
+        /// <para>2. if parameter is an exception. It will add more information like inner exception information</para>
+        /// <para>3. if parameter is inherit from ExceptionBase, it will add more information like error id, runtime information, and so on</para>
+        /// <para>4. if string.Format() failed, for example, number of parameters in template does not match, i.e. template uses
+        /// "Could not find file {0} in folder {1}" but only one parameter provided. The Method will try to recover the issue and 
+        /// report error.</para>
+        /// </remarks>
         public static void FormatMessage(StringBuilder builder, string template, params object[] parameters)
         {
             if (parameters.IsNullOrEmpty())
