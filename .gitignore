@@ -11,3 +11,12 @@
 /DotNet/Common/UnitTest/obj
 /DotNet/Common/UnitTest/StyleCop.Cache
 /DotNet/TestResults
+/DotNet/Tools/WindowsEventSourceCreator/bin
+/DotNet/Tools/WindowsEventSourceCreator/obj
+/DotNet/Shared/UnitTestHelper/bin
+/DotNet/Shared/UnitTestHelper/obj
+/DotNet/Shared/UnitTestHelper/StyleCop.Cache
+/DotNet/Common/Source/StyleCop.Cache
+/DotNet/Shared/CommonUnitTestHelper/bin
+/DotNet/Shared/CommonUnitTestHelper/obj
+/DotNet/Shared/CommonUnitTestHelper/StyleCop.Cache

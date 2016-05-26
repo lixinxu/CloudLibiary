@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBA660BA-77CD-48F9-81B8-6519378349DE}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CloudLibrary.Common</RootNamespace>
-    <AssemblyName>CloudLibrary.Common</AssemblyName>
+    <RootNamespace>CloudLibrary.Tools.WindowsEventSourceCreator</RootNamespace>
+    <AssemblyName>WindowsEventSourceCreator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,31 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionExtensions.cs" />
-    <Compile Include="CommonUtilities.cs" />
-    <Compile Include="Diagnostics\DiagnosticUtilities.cs" />
-    <Compile Include="Diagnostics\EventCollectionAttribute.cs" />
-    <Compile Include="Diagnostics\EventInformationCollection.cs" />
-    <Compile Include="Diagnostics\EventItemAttribute.cs" />
-    <Compile Include="Diagnostics\EventItemInformation.cs" />
-    <Compile Include="Diagnostics\EventLevel.cs" />
-    <Compile Include="Diagnostics\ILog.cs" />
-    <Compile Include="Diagnostics\ILogExtensions.cs" />
-    <Compile Include="Diagnostics\TraceLogger.cs" />
-    <Compile Include="Empty.cs" />
-    <Compile Include="ExceptionBase.cs" />
-    <Compile Include="Globalization\IResourceProvider.cs" />
-    <Compile Include="Globalization\IResourceProviderExtensions.cs" />
-    <Compile Include="Globalization\ResourceCollectionAttribute.cs" />
-    <Compile Include="Globalization\ResourceInformationCollection.cs" />
-    <Compile Include="Globalization\ResourceItemAttribute.cs" />
-    <Compile Include="IObjectResolver.cs" />
-    <Compile Include="IObjectResolverFactory.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingletonInstance.cs" />
-    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

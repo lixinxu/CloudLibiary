@@ -9,6 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.UnitTest", "Common\U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Source", "Common\Source\Common.Source.csproj", "{DBA660BA-77CD-48F9-81B8-6519378349DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{538E7473-3BBA-48CC-A08F-F93BD2232DAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsEventSourceCreator", "Tools\WindowsEventSourceCreator\WindowsEventSourceCreator.csproj", "{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F45249E0-5481-4FFE-82E5-E20B2DDBCCD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestHelper", "Shared\UnitTestHelper\UnitTestHelper.csproj", "{8ED49A00-2EF5-430E-B37F-060AE1A06DB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUnitTestHelper", "Shared\CommonUnitTestHelper\CommonUnitTestHelper.csproj", "{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +33,18 @@ Global
 		{DBA660BA-77CD-48F9-81B8-6519378349DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA660BA-77CD-48F9-81B8-6519378349DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA660BA-77CD-48F9-81B8-6519378349DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED49A00-2EF5-430E-B37F-060AE1A06DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED49A00-2EF5-430E-B37F-060AE1A06DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED49A00-2EF5-430E-B37F-060AE1A06DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED49A00-2EF5-430E-B37F-060AE1A06DB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +52,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AC16900D-3947-47B2-8B48-4897A307C756} = {E8DCCEF9-95BD-45F3-9E71-1B8336712BFA}
 		{DBA660BA-77CD-48F9-81B8-6519378349DE} = {E8DCCEF9-95BD-45F3-9E71-1B8336712BFA}
+		{C4F0E23C-1D7C-44C8-AAD6-813FEF9563A0} = {538E7473-3BBA-48CC-A08F-F93BD2232DAE}
+		{8ED49A00-2EF5-430E-B37F-060AE1A06DB3} = {F45249E0-5481-4FFE-82E5-E20B2DDBCCD4}
+		{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C} = {F45249E0-5481-4FFE-82E5-E20B2DDBCCD4}
 	EndGlobalSection
 EndGlobal

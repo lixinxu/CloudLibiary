@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBA660BA-77CD-48F9-81B8-6519378349DE}</ProjectGuid>
+    <ProjectGuid>{61FA4ACA-13AE-49A2-AFEC-7577FFC29B2C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CloudLibrary.Common</RootNamespace>
-    <AssemblyName>CloudLibrary.Common</AssemblyName>
+    <RootNamespace>CloudLibrary.Shared.CommonUnitTestHelper</RootNamespace>
+    <AssemblyName>CloudLibrary.Shared.CommonUnitTestHelper</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,31 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionExtensions.cs" />
-    <Compile Include="CommonUtilities.cs" />
-    <Compile Include="Diagnostics\DiagnosticUtilities.cs" />
-    <Compile Include="Diagnostics\EventCollectionAttribute.cs" />
-    <Compile Include="Diagnostics\EventInformationCollection.cs" />
-    <Compile Include="Diagnostics\EventItemAttribute.cs" />
-    <Compile Include="Diagnostics\EventItemInformation.cs" />
-    <Compile Include="Diagnostics\EventLevel.cs" />
-    <Compile Include="Diagnostics\ILog.cs" />
-    <Compile Include="Diagnostics\ILogExtensions.cs" />
-    <Compile Include="Diagnostics\TraceLogger.cs" />
-    <Compile Include="Empty.cs" />
-    <Compile Include="ExceptionBase.cs" />
-    <Compile Include="Globalization\IResourceProvider.cs" />
-    <Compile Include="Globalization\IResourceProviderExtensions.cs" />
-    <Compile Include="Globalization\ResourceCollectionAttribute.cs" />
-    <Compile Include="Globalization\ResourceInformationCollection.cs" />
-    <Compile Include="Globalization\ResourceItemAttribute.cs" />
-    <Compile Include="IObjectResolver.cs" />
-    <Compile Include="IObjectResolverFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingletonInstance.cs" />
-    <Compile Include="StringExtensions.cs" />
+    <Compile Include="TraceListenerForTest.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Source\Common.Source.csproj">
+      <Project>{dba660ba-77cd-48f9-81b8-6519378349de}</Project>
+      <Name>Common.Source</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
