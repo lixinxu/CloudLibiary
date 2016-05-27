@@ -4,7 +4,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace CloudLibrary.Common
+namespace CloudLibrary.Common.Configuration
 {
     /// <summary>
     /// Configuration provider interface

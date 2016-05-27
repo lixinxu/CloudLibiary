@@ -4,7 +4,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace CloudLibrary.Common
+namespace CloudLibrary.Common.Runtime
 {
     /// <summary>
     /// Object Resolver interface
