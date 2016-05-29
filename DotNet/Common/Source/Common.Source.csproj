@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="CommonUtilities.cs" />
+    <Compile Include="Configuration\IConfigurationXmlLoader.cs" />
     <Compile Include="Diagnostics\DiagnosticUtilities.cs" />
     <Compile Include="Diagnostics\EventCollectionAttribute.cs" />
     <Compile Include="Diagnostics\EventInformationCollection.cs" />

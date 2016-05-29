@@ -14,6 +14,9 @@ namespace CloudLibrary.Common.UnitTest.GlobalizationTest
     /// <summary>
     /// Test resource collection attribute
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     [TestClass]
     public class ResourceCollectionAttributeUnitTest

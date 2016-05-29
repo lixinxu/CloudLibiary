@@ -14,6 +14,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// <summary>
     /// ILog trance implementation
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public class TraceLogger : ILog
     {
         /// <summary>

@@ -13,6 +13,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// <summary>
     /// Logging interface
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public interface ILog
     {
         /// <summary>

@@ -19,6 +19,9 @@ namespace CloudLibrary.Common.UnitTest.GlobalizationTest
     /// <summary>
     /// Unit test for ResourceInformationCollection
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     [TestClass]
     public class ResourceInformationCollectionUnitTest

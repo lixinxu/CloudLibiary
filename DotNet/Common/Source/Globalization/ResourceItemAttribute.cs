@@ -29,6 +29,9 @@ namespace CloudLibrary.Common.Globalization
     /// ...
     /// ]]>
     /// </example>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [AttributeUsage(AttributeTargets.Field)]
     public class ResourceItemAttribute : Attribute
     {

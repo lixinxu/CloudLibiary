@@ -12,6 +12,9 @@ namespace CloudLibrary.Common.Runtime
     /// <summary>
     /// Object resolver interface
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public interface IObjectResolverFactory
     {
         /// <summary>

@@ -31,6 +31,9 @@ namespace CloudLibrary.Common
     /// }
     /// ]]>
     /// </example>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public class ReadOnlyDictionary<TKey, TValue> : IReadOnlyDictionary<TKey, TValue>
     {
         /// <summary>

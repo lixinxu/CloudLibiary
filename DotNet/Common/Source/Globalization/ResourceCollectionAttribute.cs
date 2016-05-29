@@ -39,6 +39,9 @@ namespace CloudLibrary.Common.Globalization
     /// }
     /// ]]>
     /// </example>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [AttributeUsage(AttributeTargets.Enum)]
     public class ResourceCollectionAttribute : Attribute
     {

@@ -16,7 +16,10 @@ namespace CloudLibrary.Common.Runtime
     /// the resolver in container/factory every time. This improves the performance a lot</para>
     /// <para>For classic IoC providers like Unity, developer can create a wrapper/adapter so it can support new 
     /// dependency model.</para>
-    /// </remarks>CloudLibrary
+    /// </remarks>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public interface IObjectResolver
     {
         /// <summary>

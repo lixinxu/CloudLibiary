@@ -37,6 +37,9 @@ namespace CloudLibrary.Common.Globalization
         /// var resource = provider.GetResource(MyResource.TitleInformation);
         /// ]]>
         /// </example>
+        /// <history>
+        ///     <create time="2016/5/16" author="lixinxu" />
+        /// </history>
         public static string GetResource<T>(this IResourceProvider provider, T id)
         {
             var resourceInformationCollection = SingletonInstance<ResourceInformationCollection<T>>.Instance;

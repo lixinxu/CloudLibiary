@@ -13,6 +13,9 @@ namespace CloudLibrary.Common.UnitTest
     /// <summary>
     /// Test Empty class
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     [TestClass]
     public class EmptyUnitTest

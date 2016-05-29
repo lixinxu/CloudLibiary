@@ -35,6 +35,9 @@ namespace CloudLibrary.Common.Configuration
     /// }
     /// ]]>
     /// </example>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public interface IConfigurationProvider
     {
         /// <summary>

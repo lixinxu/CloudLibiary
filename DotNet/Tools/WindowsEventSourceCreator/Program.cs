@@ -13,6 +13,12 @@ namespace CloudLibrary.Tools.WindowsEventSourceCreator
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Main entry
+    /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     public class Program
     {

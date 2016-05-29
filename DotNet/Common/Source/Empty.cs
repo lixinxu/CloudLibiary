@@ -15,6 +15,9 @@ namespace CloudLibrary.Common
     /// Sometimes we need to return empty collection. Instead of creating new empty object over and over, we can re-use
     /// pre-created object to avoid performance and memory issue.
     /// </remarks>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public static class Empty
     {
         /// <summary>
