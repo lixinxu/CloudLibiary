@@ -15,6 +15,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// Event information collection
     /// </summary>
     /// <typeparam name="T">type of event enumerator</typeparam>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public class EventInformationCollection<T>
     {
         /// <summary>

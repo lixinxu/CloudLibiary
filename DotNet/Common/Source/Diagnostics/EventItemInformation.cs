@@ -12,6 +12,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// <remarks>
     /// This class is used internally for processing event enumerator.
     /// </remarks>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public class EventItemInformation
     {
         /// <summary>

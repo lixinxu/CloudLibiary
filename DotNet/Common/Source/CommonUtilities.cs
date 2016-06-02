@@ -11,6 +11,9 @@ namespace CloudLibrary.Common
     /// <summary>
     /// Common utilities
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public static class CommonUtilities
     {
     }

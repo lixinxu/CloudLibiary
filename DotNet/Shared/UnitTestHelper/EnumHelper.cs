@@ -23,6 +23,9 @@ namespace CloudLibrary.Shared.UnitTestHelper
         /// </summary>
         /// <typeparam name="T">type of enumerator</typeparam>
         /// <returns>possible value list</returns>
+        /// <history>
+        ///     <create time="2016/5/16" author="lixinxu" />
+        /// </history>
         public static IReadOnlyList<T> GetAllPossibleValues<T>()
         {
             if (!typeof(T).IsEnum)

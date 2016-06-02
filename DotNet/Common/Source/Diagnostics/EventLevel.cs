@@ -13,6 +13,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// Not all application supports full set of event level. For example, Windows event does not support "Fault". In
     /// this case, the logging provide can merge the "fault" to "error".
     /// </remarks>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public enum EventLevel
     {
         /// <summary>

@@ -34,6 +34,9 @@ namespace CloudLibrary.Shared.CommonUnitTestHelper
     /// </configuration>    
     /// /// ]]>
     /// </remarks>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     public class TraceListenerForTest : TraceListener
     {

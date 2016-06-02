@@ -29,6 +29,9 @@ namespace CloudLibrary.Shared.UnitTestHelper
         /// var data = CreateUniqueName(template);
         /// ]]>
         /// </example>
+        /// <history>
+        ///     <create time="2016/5/16" author="lixinxu" />
+        /// </history>
         public static string CreateUniqueName(string template)
         {
             return string.Format(template, Guid.NewGuid().ToString("N"));
