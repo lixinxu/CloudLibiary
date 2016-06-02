@@ -14,6 +14,12 @@ namespace CloudLibrary.Common.Diagnostics
     using System.Threading.Tasks;
     using Globalization;
 
+    /// <summary>
+    /// ILog extensions
+    /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public static class ILogExtensions
     {
         public static void Write<T>(

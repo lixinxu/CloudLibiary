@@ -16,6 +16,9 @@ namespace CloudLibrary.Common.Globalization
     /// <typeparam name="T">type of enumerator</typeparam>
     /// <seealso cref="ResourceCollectionAttribute"/>
     /// <seealso cref="ResourceItemAttribute"/>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public class ResourceInformationCollection<T>
     {
         /// <summary>

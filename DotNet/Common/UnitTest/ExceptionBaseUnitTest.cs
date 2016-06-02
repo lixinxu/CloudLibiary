@@ -16,6 +16,9 @@ namespace CloudLibrary.Common.UnitTest
     /// <summary>
     /// Unit test for ExceptionBase
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     [TestClass]
     public class ExceptionBaseUnitTest

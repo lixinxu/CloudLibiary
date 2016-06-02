@@ -32,6 +32,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// ]]>
     /// <seealso cref="ILogExtensions.Write{T}(ILog, DateTime, StackTrace, IReadOnlyDictionary{string, object})"/>
     /// </example>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [AttributeUsage(AttributeTargets.Enum)]
     public class EventCollectionAttribute : Attribute
     {

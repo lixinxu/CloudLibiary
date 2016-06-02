@@ -15,6 +15,9 @@ namespace CloudLibrary.Common.UnitTest.DiagnosticsTest
     /// <summary>
     /// Unit test for EventItemInformation
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [ExcludeFromCodeCoverage]
     [TestClass]
     public class EventItemInformationUnitTest

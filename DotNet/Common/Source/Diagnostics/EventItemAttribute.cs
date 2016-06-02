@@ -11,6 +11,9 @@ namespace CloudLibrary.Common.Diagnostics
     /// <summary>
     /// Attribute for event enumerator item
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     [AttributeUsage(AttributeTargets.Field)]
     public class EventItemAttribute : Attribute
     {

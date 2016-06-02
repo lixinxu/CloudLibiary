@@ -4,7 +4,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace CloudLibrary.Common
+namespace CloudLibrary.Common.Runtime
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +12,9 @@ namespace CloudLibrary.Common
     /// <summary>
     /// Object resolver interface
     /// </summary>
+    /// <history>
+    ///     <create time="2016/5/16" author="lixinxu" />
+    /// </history>
     public interface IObjectResolverFactory
     {
         /// <summary>

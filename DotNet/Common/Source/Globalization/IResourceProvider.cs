@@ -42,6 +42,9 @@ namespace CloudLibrary.Common.Globalization
         /// </example>
         /// <seealso cref="IResourceProviderExtensions.GetResource{T}(IResourceProvider, string)"/>
         /// <seealso cref="IResourceProviderExtensions.GetResource{T}(IResourceProvider, T)"/>
+        /// <history>
+        ///     <create time="2016/5/16" author="lixinxu" />
+        /// </history>
         string GetResource(string storageName, string key);
     }
 }
