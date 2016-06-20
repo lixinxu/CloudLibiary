@@ -58,6 +58,28 @@ namespace CloudLibrary.Shared.UnitTestHelper
             return attributes;
         }
 
+        /// <summary>
+        /// Get XML child elements
+        /// </summary>
+        /// <param name="root">root element</param>
+        /// <returns>child element list</returns>
+        public static IReadOnlyList<XmlElement> GetElements(XmlElement root)
+        {
+            var list = new List<XmlElement>();
+            if (root.HasChildNodes)
+            {
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    if (node.NodeType == XmlNodeType.Element)
+                    {
+                        list.Add(node as XmlElement);
+                    }
+                }
+            }
+
+            return list;
+        }
+
         #region Emit
         /// <summary>
         /// Create dynamic module
