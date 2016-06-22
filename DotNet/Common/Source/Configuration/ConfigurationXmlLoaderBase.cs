@@ -20,7 +20,7 @@ namespace CloudLibrary.Common.Configuration
     /// <history>
     ///     <create date="2015-6-4" by="lixinxu" />
     /// </history>
-    public abstract class ConfigurationXmlLoaderBase :  IConfigurationXmlLoader
+    public abstract class ConfigurationXmlLoaderBase : IConfigurationXmlLoader
     {
         #region System defined XML element names
         /// <summary>
@@ -30,25 +30,24 @@ namespace CloudLibrary.Common.Configuration
         /// If the "include" XML is the XML which we loaded, then we need a root element. Otherwise we will
         /// use the original XML element name as root element.
         /// </remarks>
-        private static readonly string SystemDefaultRootElementName = "configuration";
+        public const string DefaultRootElementName = "configuration";
 
         /// <summary>
         /// The default name of "include" element.
         /// </summary>
-        private static readonly string SystemDefaultIncludeElementName = "include";
+        public const string DefaultIncludeElementName = "include";
+
+        /// <summary>
+        /// The default attribute name for locating root element name
+        /// </summary>
+        public const string DefaultRootElementLocateAttributeName = "root";
+
+        /// <summary>
+        /// The default attribute name for locating include element name
+        /// </summary>
+        public const string DefaultIncludeElementLocateAttributeName = "include";
+
         #endregion System defined XML element names
-
-        #region XML element names
-        /// <summary>
-        /// Gets the default root element name if the first XML is "include" element.
-        /// </summary>
-        protected virtual string DefaultRootElementName => SystemDefaultRootElementName;
-
-        /// <summary>
-        /// Gets the name of "include" element 
-        /// </summary>
-        protected virtual string IncludeElementName => SystemDefaultIncludeElementName;
-        #endregion XML element names
 
         /// <summary>
         /// Load XML from give location
@@ -56,41 +55,114 @@ namespace CloudLibrary.Common.Configuration
         /// <param name="location">the location of XML</param>
         /// <returns>The loaded XML</returns>
         /// <remarks>
-        /// The "location" is very generic. It can be file path, URL, database column name or section name in configuration file.
+        /// The "location" is very generic. It can be file path, URL, database column value or section name in configuration file.
         /// </remarks>
-        public virtual XmlElement Load(string location)
+        /// <param name="rootElementLocateAttributeName">
+        /// attribute name for locating root element name
+        /// </param>
+        /// <param name="includeElementLocateAttributeName">
+        /// attribute name for locating include element name
+        /// </param>
+        public virtual XmlElement Load(
+            string location,
+            string rootElementLocateAttributeName = null,
+            string includeElementLocateAttributeName = null)
         {
             var rawXml = this.LoadXml(location);
+            if (rawXml == null)
+            {
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(rootElementLocateAttributeName))
+            {
+                rootElementLocateAttributeName = DefaultRootElementLocateAttributeName;
+            }
+
+            if (string.IsNullOrEmpty(includeElementLocateAttributeName))
+            {
+                includeElementLocateAttributeName = DefaultIncludeElementLocateAttributeName;
+            }
+
+            var rootElementName = rawXml.GetAttribute(rootElementLocateAttributeName);
+            if (string.IsNullOrEmpty(rootElementName))
+            {
+                rootElementName = DefaultRootElementName;
+            }
+
+            var includeElementName = rawXml.GetAttribute(includeElementLocateAttributeName);
+            if (string.IsNullOrEmpty(includeElementName))
+            {
+                includeElementName = DefaultIncludeElementName;
+            }
+
             var xmlDocument = new XmlDocument();
-            return this.ProcessRawXml(xmlDocument, rawXml, location);
+            this.ProcessRawXml(xmlDocument, rawXml, location, rootElementName, includeElementName);
+            return xmlDocument.DocumentElement;
         }
 
         #region help for loading/copying XML
         /// <summary>
         /// Process raw XML
         /// </summary>
-        /// <param name="targetXmlDocument">target XML document</param>
-        /// <param name="rawXml">raw XML to process</param>
+        /// <param name="targetNode">target XML node. It could be element or document</param>
+        /// <param name="sourceXml">source XML to process</param>
         /// <param name="location">the location of the XML</param>
-        /// <returns>processed XML</returns>
-        protected XmlElement ProcessRawXml(XmlDocument targetXmlDocument, XmlElement rawXml, string location)
+        /// <param name="rootElementName">root element name</param>
+        /// <param name="includeElementName">name of element which for inserting external XML</param>
+        protected void ProcessRawXml(
+            XmlNode targetNode, 
+            XmlElement sourceXml, 
+            string location, 
+            string rootElementName, 
+            string includeElementName)
         {
-            XmlElement configurationXml = null;
-            if (rawXml != null)
+            if (sourceXml != null)
             {
-                if (rawXml.Name == this.IncludeElementName)
+                var targetDocument = targetNode as XmlDocument;
+                if (targetDocument == null)
                 {
-                    configurationXml = targetXmlDocument.CreateElement(this.DefaultRootElementName);
-                    this.CopyAttributes(rawXml, configurationXml);
-                    this.CopyChildren(rawXml, configurationXml, location);
+                    targetDocument = targetNode.OwnerDocument;
+                }
+
+                if (sourceXml.Name == includeElementName)
+                {
+                    var relativeLocation = sourceXml.Value;
+                    var newLocation = this.GetNewLocation(location, relativeLocation);
+                    var containerXml = this.LoadXml(newLocation);
+                    if (containerXml != null)
+                    {
+                        if (containerXml.Name == rootElementName)
+                        {
+                            if (containerXml.HasChildNodes)
+                            {
+                                for (var i = 0; i < sourceXml.ChildNodes.Count; i++)
+                                {
+                                    var childNode = sourceXml.ChildNodes[i];
+                                    if (childNode.NodeType == XmlNodeType.Element)
+                                    {
+                                        this.ProcessRawXml(
+                                            targetNode, 
+                                            childNode as XmlElement, 
+                                            newLocation, 
+                                            rootElementName, 
+                                            includeElementName);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.ProcessRawXml(targetNode, containerXml, newLocation, rootElementName, includeElementName);
+                        }
+                    }
                 }
                 else
                 {
-                    configurationXml = this.DuplicateXmlElement(targetXmlDocument, rawXml, location);
+                    var configurationXml = this.DuplicateXmlElement(targetDocument, sourceXml, location, includeElementName);
+                    targetNode.AppendChild(configurationXml);
                 }
             }
-
-            return configurationXml;
         }
 
         /// <summary>
@@ -117,10 +189,15 @@ namespace CloudLibrary.Common.Configuration
         /// <param name="sourceXml">Source XML which contains child elements to copy</param>
         /// <param name="targetXml">Target XML which receive elements</param>
         /// <param name="sourceXmlLocation">the location which the source XML loaded from</param>
+        /// <param name="includeElementName">name of element which for inserting external XML</param>
         /// <remarks>
         /// During copying, it will process "include elements" and merging those external XML if necessary
         /// </remarks>
-        protected void CopyChildren(XmlElement sourceXml, XmlElement targetXml, string sourceXmlLocation)
+        protected void CopyChildren(
+            XmlElement sourceXml, 
+            XmlElement targetXml, 
+            string sourceXmlLocation,
+            string includeElementName)
         {
             if (sourceXml.HasChildNodes)
             {
@@ -130,9 +207,14 @@ namespace CloudLibrary.Common.Configuration
                     if (childNode.NodeType == XmlNodeType.Element)
                     {
                         var childXml = childNode as XmlElement;
-                        if (childXml.Name != this.IncludeElementName)
+                        if (childXml.Name != includeElementName)
                         {
-                            targetXml.AppendChild(this.DuplicateXmlElement(targetXml.OwnerDocument, childXml, sourceXmlLocation));
+                            var newChildXml = this.DuplicateXmlElement(
+                                targetXml.OwnerDocument, 
+                                childXml, 
+                                sourceXmlLocation,
+                                includeElementName);
+                            targetXml.AppendChild(newChildXml);
                         }
                         else
                         {
@@ -147,13 +229,18 @@ namespace CloudLibrary.Common.Configuration
                             var referenceXml = this.LoadXml(newLocation);
                             if (referenceXml != null)
                             {
-                                if (referenceXml.Name == this.IncludeElementName)
+                                if (referenceXml.Name == includeElementName)
                                 {
-                                    this.CopyChildren(referenceXml, targetXml, newLocation);
+                                    this.CopyChildren(referenceXml, targetXml, newLocation, includeElementName);
                                 }
                                 else
                                 {
-                                    targetXml.AppendChild(this.DuplicateXmlElement(targetXml.OwnerDocument, referenceXml, newLocation));
+                                    var newChildXml = this.DuplicateXmlElement(
+                                        targetXml.OwnerDocument, 
+                                        referenceXml, 
+                                        newLocation,
+                                        includeElementName);
+                                    targetXml.AppendChild(newChildXml);
                                 }
                             }
                         }
@@ -168,12 +255,17 @@ namespace CloudLibrary.Common.Configuration
         /// <param name="targetDocument">target XML document</param>
         /// <param name="sourceXml">XML element to be duplicated</param>
         /// <param name="sourceXmlLocation">the location of the source XML which it loaded from</param>
+        /// <param name="includeElementName">name of element which for inserting external XML</param>
         /// <returns>the duplicated XML element</returns>
-        protected XmlElement DuplicateXmlElement(XmlDocument targetDocument, XmlElement sourceXml, string sourceXmlLocation)
+        protected XmlElement DuplicateXmlElement(
+            XmlDocument targetDocument, 
+            XmlElement sourceXml, 
+            string sourceXmlLocation,
+            string includeElementName)
         {
             var newXml = targetDocument.CreateElement(sourceXml.Name);
             this.CopyAttributes(sourceXml, newXml);
-            this.CopyChildren(sourceXml, newXml, sourceXmlLocation);
+            this.CopyChildren(sourceXml, newXml, sourceXmlLocation, includeElementName);
             return newXml;
         }
         #endregion help for loading/copying XML

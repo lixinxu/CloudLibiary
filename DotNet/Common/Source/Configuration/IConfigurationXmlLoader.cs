@@ -42,7 +42,16 @@ namespace CloudLibrary.Common.Configuration
         /// <param name="location">
         /// The location of the XML. It can be section name in web.config, file path on the disk, or URL
         /// </param>
+        /// <param name="rootElementLocateAttributeName">
+        /// attribute name for locating root element name
+        /// </param>
+        /// <param name="includeElementLocateAttributeName">
+        /// attribute name for include root element name
+        /// </param>
         /// <returns>configuration XML. null if failed to load</returns>
-        XmlElement Load(string location);
+        XmlElement Load(
+            string location, 
+            string rootElementLocateAttributeName = null, 
+            string includeElementLocateAttributeName = null);
     }
 }
