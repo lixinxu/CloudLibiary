@@ -74,34 +74,14 @@ namespace CloudLibrary.Common.Configuration
                 return null;
             }
 
-            if (string.IsNullOrEmpty(rootElementLocateAttributeName))
-            {
-                rootElementLocateAttributeName = DefaultRootElementLocateAttributeName;
-            }
-
-            if (string.IsNullOrEmpty(includeElementLocateAttributeName))
-            {
-                includeElementLocateAttributeName = DefaultIncludeElementLocateAttributeName;
-            }
-
-            var rootElementName = rawXml.GetAttribute(rootElementLocateAttributeName);
-            if (string.IsNullOrEmpty(rootElementName))
-            {
-                rootElementName = DefaultRootElementName;
-            }
-
-            var includeElementName = rawXml.GetAttribute(includeElementLocateAttributeName);
-            if (string.IsNullOrEmpty(includeElementName))
-            {
-                includeElementName = DefaultIncludeElementName;
-            }
+            var rootElementName = this.GetRootElementName(rawXml, rootElementLocateAttributeName);
+            var includeElementName = this.GetIncludeElementName(rawXml, includeElementLocateAttributeName);
 
             var xmlDocument = new XmlDocument();
             this.ProcessRawXml(xmlDocument, rawXml, location, rootElementName, includeElementName);
             return xmlDocument.DocumentElement;
         }
 
-        #region help for loading/copying XML
         /// <summary>
         /// Process raw XML
         /// </summary>
@@ -110,7 +90,7 @@ namespace CloudLibrary.Common.Configuration
         /// <param name="location">the location of the XML</param>
         /// <param name="rootElementName">root element name</param>
         /// <param name="includeElementName">name of element which for inserting external XML</param>
-        protected void ProcessRawXml(
+        public void ProcessRawXml(
             XmlNode targetNode, 
             XmlElement sourceXml, 
             string location, 
@@ -163,6 +143,54 @@ namespace CloudLibrary.Common.Configuration
                     targetNode.AppendChild(configurationXml);
                 }
             }
+        }
+
+        #region help for loading/copying XML
+        /// <summary>
+        /// Get Root element name
+        /// </summary>
+        /// <param name="hostXmlElement">XML element which contains attribute of root element name</param>
+        /// <param name="rootElementLocateAttributeName">the name of the attribute which stored the element name</param>
+        /// <returns>root element</returns>
+        /// <remarks>if root element in host XML element was not found, or it is blank, the default root element name will be returned</remarks>
+        protected string GetRootElementName(XmlElement hostXmlElement, string rootElementLocateAttributeName = null)
+        {
+            rootElementLocateAttributeName = rootElementLocateAttributeName.SafeTrim();
+            if (rootElementLocateAttributeName == null)
+            {
+                rootElementLocateAttributeName = DefaultRootElementLocateAttributeName;
+            }
+
+            var rootElementName = hostXmlElement.GetAttribute(rootElementLocateAttributeName);
+            if (string.IsNullOrEmpty(rootElementName))
+            {
+                rootElementName = DefaultRootElementName;
+            }
+
+            return rootElementName;
+        }
+
+        /// <summary>
+        /// Get include element name for current element
+        /// </summary>
+        /// <param name="hostXmlElement">host element which contains the include element name information</param>
+        /// <param name="includeElementLocateAttributeName">the name of the attribute which stored the element name</param>
+        /// <returns>include element name</returns>
+        protected string GetIncludeElementName(XmlElement hostXmlElement, string includeElementLocateAttributeName = null)
+        {
+            includeElementLocateAttributeName = includeElementLocateAttributeName.SafeTrim();
+            if (includeElementLocateAttributeName == null)
+            {
+                includeElementLocateAttributeName = DefaultIncludeElementLocateAttributeName;
+            }
+
+            var includeElementName = hostXmlElement.GetAttribute(includeElementLocateAttributeName);
+            if (string.IsNullOrEmpty(includeElementName))
+            {
+                includeElementName = DefaultIncludeElementName;
+            }
+
+            return includeElementName;
         }
 
         /// <summary>

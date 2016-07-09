@@ -20,3 +20,5 @@
 /DotNet/Shared/CommonUnitTestHelper/bin
 /DotNet/Shared/CommonUnitTestHelper/obj
 /DotNet/Shared/CommonUnitTestHelper/StyleCop.Cache
+/DotNet/Cloud/Microsoft/Azure/ActiveDirectory/Source/bin
+/DotNet/Cloud/Microsoft/Azure/ActiveDirectory/Source/obj

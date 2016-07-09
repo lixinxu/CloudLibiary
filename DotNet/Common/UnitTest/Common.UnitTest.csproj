@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
@@ -55,6 +56,8 @@
   <ItemGroup>
     <Compile Include="CollectionExtensionsUnitTest.cs" />
     <Compile Include="ConfigurationTest\ConfigurationXmlLoaderBaseUnitTest.cs" />
+    <Compile Include="ConfigurationTest\ConfigurationXmlLoaderUnitTestBase.cs" />
+    <Compile Include="ConfigurationTest\XmlConfigurationSectionHandlerUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventCollectionAttributeUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventInformationCollectionUnitTest.cs" />
     <Compile Include="DiagnosticsTest\EventItemAttributeUnitTest.cs" />

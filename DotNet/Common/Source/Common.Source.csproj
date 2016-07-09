@@ -45,6 +45,7 @@
     <Compile Include="Configuration\ConfigurationXmlFileLoader.cs" />
     <Compile Include="Configuration\ConfigurationXmlLoaderBase.cs" />
     <Compile Include="Configuration\IConfigurationXmlLoader.cs" />
+    <Compile Include="Configuration\XmlConfigurationSectionHandler.cs" />
     <Compile Include="Diagnostics\DiagnosticUtilities.cs" />
     <Compile Include="Diagnostics\EventCollectionAttribute.cs" />
     <Compile Include="Diagnostics\EventInformationCollection.cs" />
