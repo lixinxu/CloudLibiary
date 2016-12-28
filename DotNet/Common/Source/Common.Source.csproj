@@ -54,6 +54,7 @@
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\ILogExtensions.cs" />
     <Compile Include="Diagnostics\TraceLogger.cs" />
+    <Compile Include="Diagnostics\WindowsEventLogger.cs" />
     <Compile Include="Empty.cs" />
     <Compile Include="ExceptionBase.cs" />
     <Compile Include="Globalization\IResourceProvider.cs" />
